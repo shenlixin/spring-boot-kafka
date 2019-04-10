@@ -1,0 +1,19 @@
+server:
+  port: 8000
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092   #指定kafka 代理地址，可以多个
+    producer:
+      batch-size: 16   #每次批量发送消息的数量
+      retries: 0
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer  #指定消息key的编码方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer  #指定消息体的编码方式
+    consumer:
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer  #指定消息key的解码方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer  #指定消息体的解码方式
+      group-id: consumer-group-01 #指定默认消费者group id
+
